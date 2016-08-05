@@ -19,7 +19,7 @@ RUN mkdir -p /usr/local/sbin \
     # Update openssl to fix: wget: can't execute 'ssl_helper': No such file or directory
     && apk add --update openssl \
 
-    # Install sha256sum validator
+    # Install sha256sum validator to check that we download the right files
     && wget -q -O validate_sha256sum https://gist.githubusercontent.com/onnimonni/b49779ebc96216771a6be3de46449fa1/raw/d3ef37ab4a653e1b7655df55dfeadd54e0bacf84/validate_sha256sum \
     && chmod +x validate_sha256sum \
     # This is pretty silly but I feel good about myself after putting it in here :)
@@ -47,7 +47,16 @@ RUN mkdir -p /usr/local/sbin \
     && cp /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "${TZ}" > /etc/timezone \
 
-    # Bash is so basic that it should always be included even for debugging
+    # Install envsubst command for replacing config files in system startup
+    # - it needs libintl package
+    # - only weights 100KB combined with it's libraries
+    && apk add gettext libintl \
+    && mv /usr/bin/envsubst /tmp/envsubst \
+    && apk del gettext \
+    && mv /tmp/envsubst /usr/bin/envsubst \
+
+    # Install basic tooling
+    # - Bash is so basic that it should always be included even for debugging
     && apk add bash \
 
     # Sanity helpers when attaching into container
