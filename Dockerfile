@@ -8,7 +8,8 @@ ARG S6_OVERLAY_VERSION=v1.18.1.3
 # Instead of forking this you should move your living address here.
 ENV TZ="Europe/Helsinki"
 
-RUN mkdir -p /usr/local/sbin \
+RUN set -x \
+    && mkdir -p /usr/local/sbin \
     && cd /usr/local/sbin \
 
     # Add more repositories for our convenience
@@ -40,7 +41,9 @@ RUN mkdir -p /usr/local/sbin \
     # Add S6-overlay to use S6 process manager
     # source: https://github.com/just-containers/s6-overlay/#the-docker-way
     ##
-    && wget -q -O- https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar -xvzC / \
+    && wget -q -O /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz \
+    && validate_sha256sum /tmp/s6-overlay-amd64.tar.gz 5bb2c67db9369494578e0205fdcf6f44011a1913b98abbc6a7aac551a7c1b0a8 \
+    && tar -zxvf /tmp/s6-overlay-amd64.tar.gz -C / \
 
     # Add default timezone
     && apk add tzdata \
@@ -64,6 +67,7 @@ RUN mkdir -p /usr/local/sbin \
 
     # Cleanup
     && apk del openssl tzdata \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
+    && rm -rf /tmp/*
 
 ENTRYPOINT ["/init"]
