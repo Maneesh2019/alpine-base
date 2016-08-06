@@ -24,9 +24,10 @@ RUN set -x \
 
     # Install sha256sum validator to check that we download the right files
     && wget -q -O validate_sha256sum https://gist.githubusercontent.com/onnimonni/b49779ebc96216771a6be3de46449fa1/raw/d3ef37ab4a653e1b7655df55dfeadd54e0bacf84/validate_sha256sum \
+    # This is semi meta but validate that our validator is valid
+    && sha256sum validate_sha256sum | grep 0f7b790036f7cd00610cbe9e79c5b6b42d5b0e02beaff9549bdc43fc99910709 \
+    && echo "Success: validate_sha256sum matches provided sha256sum" || exit 1 \
     && chmod +x validate_sha256sum \
-    # This is pretty silly but I feel good about myself after putting it in here :)
-    && validate_sha256sum validate_sha256sum 0f7b790036f7cd00610cbe9e79c5b6b42d5b0e02beaff9549bdc43fc99910709 \
 
     # apk helper from progrium
     && wget -q -O apk-install https://raw.githubusercontent.com/gliderlabs/docker-alpine/master/builder/scripts/apk-install \
