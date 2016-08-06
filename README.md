@@ -1,5 +1,5 @@
 # Alpine docker base image
-Alpine base images with sane default configs.
+Alpine base image with sane default configs.
 
 This image uses [s6-overlay](https://github.com/just-containers/s6-overlay/#the-docker-way).
 
