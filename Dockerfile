@@ -9,6 +9,8 @@ ARG S6_OVERLAY_VERSION=v1.18.1.3
 ENV TZ="Europe/Helsinki"
 
 RUN set -x \
+
+    # This folder is in $PATH by default but isn't created by default
     && mkdir -p /usr/local/sbin \
     && cd /usr/local/sbin \
 
@@ -58,12 +60,19 @@ RUN set -x \
     && apk del gettext \
     && mv /tmp/envsubst /usr/bin/envsubst \
 
-    # Install basic tooling
-    # - Bash is so basic that it should always be included even for debugging
-    && apk add bash \
+    ##
+    # Create a few aliases
+    # - I didn't figure out how to load aliases into sh shell with docker so we add scripts instead
+    ##
 
-    # Sanity helpers when attaching into container
-    && echo "alias ll='ls -lah'" >> /root/.bashrc \
+    # ll
+    && echo -e "#!/bin/sh \nls -lah \"\$@\"" > /usr/local/bin/ll \
+    # la
+    && echo -e "#!/bin/sh \nls -A \"\$@\"" > /usr/local/bin/la \
+    # l
+    && echo -e "#!/bin/sh \nls -CF \"\$@\"" > /usr/local/bin/l \
+
+    && chmod a+x /usr/local/bin/*
 
     # Cleanup
     && apk del openssl tzdata \
