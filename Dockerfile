@@ -73,7 +73,7 @@ RUN set -x \
     # l
     && echo -e "#!/bin/sh \nls -CF \"\$@\"" > /usr/local/bin/l \
 
-    && chmod a+x /usr/local/bin/*
+    && chmod a+x /usr/local/bin/* \
 
     # Cleanup
     && apk del openssl tzdata \
