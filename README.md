@@ -1,5 +1,6 @@
 # Alpine docker base image
-Alpine base image with sane default configs.
+Alpine base image with sane default configs. This tries to balance the easier usage but to stay as minimal as possible.
+This image weights: `8.098 MB`.
 
 This image uses [s6-overlay](https://github.com/just-containers/s6-overlay/#the-docker-way).
 
