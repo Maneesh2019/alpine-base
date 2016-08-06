@@ -2,6 +2,8 @@
 Alpine base image with sane default configs. This tries to balance the easier usage but to stay as minimal as possible.
 This image weights: `8.098 MB`.
 
+Available in docker hub: [onnimonni/alpine-base](https://hub.docker.com/r/onnimonni/alpine-base/).
+
 This image uses [s6-overlay](https://github.com/just-containers/s6-overlay/#the-docker-way).
 
 The image contains:
