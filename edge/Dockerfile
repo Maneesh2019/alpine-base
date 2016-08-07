@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:edge
 MAINTAINER onni@keksi.io
 
 # Build arguments
