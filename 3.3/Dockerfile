@@ -61,6 +61,12 @@ RUN set -x \
     && apk del gettext \
     && mv /tmp/envsubst /usr/bin/envsubst \
 
+    # Install drill - dig alternative from freebsd
+    # - This is for debugging dns based load balancing which super popular in clusters
+    && apk add drill \
+    # Symlink into dig for convenience
+    && ln -s /usr/bin/drill /usr/local/sbin/dig \
+
     ##
     # Create a few aliases
     # - I didn't figure out how to load aliases into sh shell with docker so we add scripts instead
