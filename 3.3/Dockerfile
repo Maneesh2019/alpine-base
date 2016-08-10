@@ -57,9 +57,7 @@ RUN set -x \
     # - it needs libintl package
     # - only weights 100KB combined with it's libraries
     && apk add gettext libintl \
-    && mv /usr/bin/envsubst /tmp/envsubst \
-    && apk del gettext \
-    && mv /tmp/envsubst /usr/bin/envsubst \
+    && mv /usr/bin/envsubst /usr/local/sbin/envsubst \
 
     # Install drill - dig alternative from freebsd
     # - This is for debugging dns based load balancing which super popular in clusters
@@ -82,7 +80,7 @@ RUN set -x \
     && chmod a+x /usr/local/bin/* \
 
     # Cleanup
-    && apk del openssl tzdata \
+    && apk del openssl tzdata gettext \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/*
 
