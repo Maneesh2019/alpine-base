@@ -1,4 +1,8 @@
 # Alpine docker base image
+[![devgeniem/alpine-wordpress docker image](http://dockeri.co/image/onnimonni/alpine-base)](https://registry.hub.docker.com/u/devgeniem/alpine-base/)
+
+[![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
 Alpine base image with sane default configs. This tries to balance the easier usage but to stay as minimal as possible.
 This image weights: `8.098 MB`.
 
