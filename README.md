@@ -13,6 +13,8 @@ I try to keep the baseimages really small, but when I find something useful I wi
 `onnimonni/alpine-base:slap` contains edge version of alpine with [slap](https://github.com/slap-editor/slap) command line editor.
 This is for the devs who don't feel that nano/vim are productive.
 
+**Image weight:** `60.88 MB`
+
 ## Information
 Available in docker hub: [onnimonni/alpine-base](https://hub.docker.com/r/onnimonni/alpine-base/).
 
