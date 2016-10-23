@@ -97,7 +97,7 @@ RUN apk add --no-cache libuv libstdc++ xclip
 # 2. Install slap
 # 3. Remove build dependencies and unnecessary files
 ##
-RUN set -x \
+RUN \
 
     apk add --no-cache --virtual build-dependencies \
     build-base linux-headers python nodejs \
