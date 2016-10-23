@@ -6,15 +6,6 @@
 Alpine base image with sane default configs. This tries to balance the easier usage but to stay as minimal as possible.
 This image weights: `8.098 MB`.
 
-## Alternative versions
-I try to keep the baseimages really small, but when I find something useful I will add alternative images here.
-
-### Base image with slap commandline editor
-`onnimonni/alpine-base:slap` contains edge version of alpine with [slap](https://github.com/slap-editor/slap) command line editor.
-This is for the devs who don't feel that nano/vim are productive.
-
-**Image weight:** `60.88 MB`
-
 ## Information
 Available in docker hub: [onnimonni/alpine-base](https://hub.docker.com/r/onnimonni/alpine-base/).
 
@@ -27,6 +18,15 @@ The image contains:
 * ll,la,l aliases included for easier debugging while attached to docker container
 
 The container has custom `validate_sha256sum` script which is used to check if downloaded scripts have corrupted, changed or MITMed.
+
+## Alternative versions
+I try to keep the baseimages really small, but when I find something useful I will add alternative images here.
+
+### Base image with slap commandline editor
+`onnimonni/alpine-base:slap` contains edge version of alpine with [slap](https://github.com/slap-editor/slap) command line editor.
+This is for the devs who don't feel that nano/vim are productive.
+
+**Image weight:** `60.88 MB`
 
 ## License
 MIT
